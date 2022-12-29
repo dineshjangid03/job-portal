@@ -8,7 +8,7 @@ public class Demo {
 	
 	@GetMapping("/hi")
 	public String hello() {
-		return "Welcome";
+		return "Welcome to job portal";
 	}
 	
 }
