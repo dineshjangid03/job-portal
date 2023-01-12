@@ -1,5 +1,7 @@
 package com.job.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,16 +11,13 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Job {
-	
+public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer Id;
 	
 	private String name;
 	
-	private String description;
-	
-	private Category category;
+	private List<Job> jobs;
 
 }
