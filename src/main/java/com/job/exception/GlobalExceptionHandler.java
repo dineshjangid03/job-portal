@@ -19,7 +19,19 @@ import com.job.dto.ExceptionDTO;
 public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(JobException.class)
-	public ResponseEntity<ExceptionDTO> loginExceptionHandler(JobException e, WebRequest wr){
+	public ResponseEntity<ExceptionDTO> jobExceptionHandler(JobException e, WebRequest wr){
+		
+		ExceptionDTO err=new ExceptionDTO();
+		err.setDateAndTime(LocalDateTime.now());
+		err.setMessage(e.getMessage());
+		err.setDesc(wr.getDescription(false));
+		
+		return new ResponseEntity<ExceptionDTO>(err, HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	@ExceptionHandler(CategoryException.class)
+	public ResponseEntity<ExceptionDTO> categoryExceptionHandler(CategoryException e, WebRequest wr){
 		
 		ExceptionDTO err=new ExceptionDTO();
 		err.setDateAndTime(LocalDateTime.now());
