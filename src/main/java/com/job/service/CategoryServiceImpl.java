@@ -1,6 +1,7 @@
 package com.job.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,32 +18,54 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public Category addCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+		return cr.save(category);
 	}
 
 	@Override
 	public Category getCategory(Integer categoryId) throws CategoryException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Category>opt=cr.findById(categoryId);
+		if(opt.isEmpty()) {
+			throw new CategoryException("category not found with id "+categoryId);
+		}
+		return opt.get();
 	}
 
 	@Override
 	public Category deleteCategory(Integer categoryId) throws CategoryException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Category>opt=cr.findById(categoryId);
+		if(opt.isEmpty()) {
+			throw new CategoryException("category not found with id "+categoryId);
+		}
+		
+		cr.delete(opt.get());
+		
+		return opt.get();
 	}
 
 	@Override
 	public Category updateCategory(Category category) throws CategoryException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Category>opt=cr.findById(category.getId());
+		if(opt.isEmpty()) {
+			throw new CategoryException("category not found with id "+category.getId());
+		}
+		Category saved=opt.get();
+		
+		if(category.getName()!=null) {
+			saved.setName(category.getName());
+		}
+		
+		return cr.save(saved);
 	}
 
 	@Override
 	public List<Category> getAllCategory() throws CategoryException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Category>list=cr.findAll();
+		
+		if(list.isEmpty()) {
+			throw new CategoryException("list is empty");
+		}
+		
+		return list;
 	}
 
 }

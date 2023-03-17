@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.job.exception.CategoryException;
 import com.job.exception.JobException;
 import com.job.model.Job;
 import com.job.service.JobService;
@@ -26,7 +27,7 @@ public class JobController {
 	private  JobService js;
 	
 	@PostMapping("/add/{categoryId}")
-	public ResponseEntity<Job> addJob(@PathVariable("categoryId") Integer categoryId, @RequestBody Job Job){
+	public ResponseEntity<Job> addJob(@PathVariable("categoryId") Integer categoryId, @RequestBody Job Job) throws CategoryException{
 		return new ResponseEntity<Job>(js.addJob(categoryId, Job),HttpStatus.OK);
 	}
 	

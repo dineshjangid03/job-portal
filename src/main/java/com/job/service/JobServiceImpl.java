@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.job.exception.CategoryException;
 import com.job.exception.JobException;
 import com.job.model.Job;
 import com.job.repository.JobRepo;
@@ -16,7 +17,7 @@ public class JobServiceImpl implements JobService{
 	private JobRepo jr;
 
 	@Override
-	public Job addJob(Integer categoryId, Job job) {
+	public Job addJob(Integer categoryId, Job job) throws CategoryException{
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -2,12 +2,13 @@ package com.job.service;
 
 import java.util.List;
 
+import com.job.exception.CategoryException;
 import com.job.exception.JobException;
 import com.job.model.Job;
 
 public interface JobService {
 	
-	public Job addJob(Integer categoryId, Job job);
+	public Job addJob(Integer categoryId, Job job)throws CategoryException;
 	
 	public Job getJob(Integer jobId)throws JobException;
 	
